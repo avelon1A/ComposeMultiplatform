@@ -5,12 +5,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
@@ -29,29 +31,26 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.ImageLoader
-import coil3.PlatformContext
 import coil3.compose.AsyncImage
 import coil3.compose.rememberAsyncImagePainter
-import coil3.compose.setSingletonImageLoaderFactory
-import coil3.request.crossfade
-import coil3.util.DebugLogger
-import org.aman.coding.getAsyncImageLoader
+import learncoding.composeapp.generated.resources.Res
+import learncoding.composeapp.generated.resources.compose_multiplatform
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun LoginScreen(
     onLoginClick: (email: String, password: String) -> Unit,
     onGoogleLoginClick: () -> Unit
 ) {
-    setSingletonImageLoaderFactory { context ->
-        getAsyncImageLoader(context)
-    }
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -66,7 +65,7 @@ fun LoginScreen(
     ) {
         // App Logo
         AsyncImage(
-            model = "https://www.gstatic.com/webp/gallery/1.png",
+            model = "https://jqnqidbwhiycqvbffyba.supabase.co/storage/v1/object/sign/images%20assets/login%20page/coding%20Main%20image.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMgYXNzZXRzL2xvZ2luIHBhZ2UvY29kaW5nIE1haW4gaW1hZ2UucG5nIiwiaWF0IjoxNzMwOTc3NzYzLCJleHAiOjE3MzM1Njk3NjN9.q2P0ihQ1PJE1hE9O45Ow3Vn88IZxv7AojQkBYdLJjqw&t=2024-11-07T11%3A08%3A31.963Z",
             contentDescription = "App Logo",
             modifier = Modifier.size(100.dp)
         )
@@ -101,6 +100,7 @@ fun LoginScreen(
 
                         IconButton(onClick = { passwordVisible = !passwordVisible }) {
                             Icon(
+                                modifier = Modifier.size(30.dp),
                                 painter = rememberAsyncImagePainter(model = image),
                                 contentDescription = "Toggle Password Visibility"
                             )
@@ -163,11 +163,14 @@ fun LoginScreen(
                 .height(50.dp),
             elevation = ButtonDefaults.elevation(8.dp)
         ) {
-            Image(
-                painter = rememberAsyncImagePainter(model = "https://www.google.com/imgres?q=google%20logo&imgurl=https%3A%2F%2Fbanner2.cleanpng.com%2F20201008%2Frtv%2Ftransparent-google-suite-icon-google-icon-1713858301568.webp&imgrefurl=https%3A%2F%2Fwww.cleanpng.com%2Fpng-google-suite-icon-google-icon-7597893%2F&docid=v9C_Lj5zWpRlGM&tbnid=jyLO5foxTzj1zM&vet=12ahUKEwicvfP5z8mJAxWJs1YBHZ9fITcQM3oECGMQAA..i&w=900&h=900&hcb=2&ved=2ahUKEwicvfP5z8mJAxWJs1YBHZ9fITcQM3oECGMQAA"), // Replace with your Google logo URL
-                contentDescription = "Google Logo",
-                modifier = Modifier.size(24.dp)
+            AsyncImage(
+                model = "https://jqnqidbwhiycqvbffyba.supabase.co/storage/v1/object/sign/images%20assets/login%20page/new%20google.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMgYXNzZXRzL2xvZ2luIHBhZ2UvbmV3IGdvb2dsZS53ZWJwIiwiaWF0IjoxNzMwOTc3NDAzLCJleHAiOjE3MzM1Njk0MDN9.-M9A5NBeZnGGAPwKkmKkbPG6gisFTkZgkjJYkPbtFpc&t=2024-11-07T11%3A02%3A32.176Z",
+                placeholder = painterResource(Res.drawable.compose_multiplatform),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.clip(CircleShape).size(24.dp)
             )
+
             Spacer(modifier = Modifier.width(8.dp))
             Text(text = "Login with Google", color = Color.Black, fontSize = 16.sp)
         }
