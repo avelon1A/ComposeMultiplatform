@@ -18,7 +18,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         moduleName = "composeApp"
@@ -38,9 +38,9 @@ kotlin {
         }
         binaries.executable()
     }
-    
+
     sourceSets {
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -57,8 +57,11 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation("io.coil-kt.coil3:coil-compose:3.0.0")
             implementation("io.coil-kt.coil3:coil-compose-core:3.0.0")
+            implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.0")
             implementation("io.coil-kt.coil3:coil:3.0.0")
             implementation("io.ktor:ktor-client-core:3.0.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
         }
         wasmJsMain.dependencies {
             implementation("io.ktor:ktor-client-js:3.0.0")
