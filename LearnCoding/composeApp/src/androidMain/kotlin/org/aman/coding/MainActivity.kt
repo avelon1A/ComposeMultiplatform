@@ -4,7 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
+import io.ktor.client.engine.okhttp.OkHttp
+import org.aman.coding.network.ApiClient
+import org.aman.coding.network.createHttpClient
 import org.aman.screens.LoginScreen
 
 class MainActivity : ComponentActivity() {
@@ -12,13 +16,37 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LoginScreen(onLoginClick ={ email, password ->},onGoogleLoginClick = {})
+            App(client = remember{
+                ApiClient(createHttpClient(OkHttp.create()))
+            })
         }
     }
 }
 
-@Preview
+@Preview(
+    name = "Laptop Screen",
+    widthDp = 1366, // Width in dp for laptop screen
+    heightDp = 768, // Height in dp for laptop screen
+
+)
 @Composable
-fun AppAndroidPreview() {
-    LoginScreen(onLoginClick ={ email, password ->},onGoogleLoginClick = {})
+fun AppAndroidLaptopPreview() {
+    LoginScreen(
+        onLoginClick = { email, password -> },
+        onGoogleLoginClick = {},
+        onSignUpClick = {}
+    )
 }
+
+//@Preview(
+//    name = "Phone Screen",
+//    showBackground = true
+//)
+//@Composable
+//fun AppAndroidPhonePreview() {
+//    LoginScreen(
+//        onLoginClick = { email, password -> },
+//        onGoogleLoginClick = {},
+//        onSignUpClick = {}
+//    )
+//}

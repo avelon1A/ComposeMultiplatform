@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
+
 }
 
 kotlin {
@@ -59,8 +61,16 @@ kotlin {
             implementation("io.coil-kt.coil3:coil-compose-core:3.0.0")
             implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.0")
             implementation("io.coil-kt.coil3:coil:3.0.0")
-            implementation("io.ktor:ktor-client-core:3.0.0")
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
+
+            implementation("io.ktor:ktor-client-core:3.0.0")
+            implementation("io.ktor:ktor-client-content-negotiation:3.0.0")
+            implementation("io.ktor:ktor-client-json:3.0.0")
+            implementation("io.ktor:ktor-client-logging:3.0.0")
+            implementation("io.ktor:ktor-client-serialization:3.0.0")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0")
+
 
         }
         wasmJsMain.dependencies {
@@ -98,6 +108,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.navigation:navigation-runtime-ktx:2.8.3")
     debugImplementation(compose.uiTooling)
 }
 
