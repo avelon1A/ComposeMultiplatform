@@ -2,55 +2,29 @@ package org.aman.screens.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.aman.coding.data.Category
-import org.aman.coding.data.getMockCategories
+import org.aman.coding.data.DataList
 import org.aman.coding.network.ApiClient
-import org.aman.coding.uitl.NetworkError
-import org.aman.coding.uitl.onError
-import org.aman.coding.uitl.onSuccess
 
 
 class MainScrenViewModel(val client: ApiClient):ViewModel() {
 
-    private val _ListOfCategories = MutableStateFlow<List<Category>>(emptyList())
-    val listOfCategories: StateFlow<List<Category>> = _ListOfCategories
+    private val _ListOfCategories: MutableStateFlow<DataList> = MutableStateFlow(DataList(emptyList(),0))
+    val listOfCategories: StateFlow<DataList> = _ListOfCategories
 
-    val _errro = MutableStateFlow<String>("test")
-    val error: StateFlow<String> = _errro
-
-
-
-    fun loadCategories() {
+    fun getDataList() {
         viewModelScope.launch {
-//            _errro.value = "loading"
-            client.loadCategories()
-                .onSuccess {
-                    _ListOfCategories.value = it
-//                    _errro.value = it.toString()
-                }
-                .onError {
-                    _ListOfCategories.value = getMockCategories()
-//                    _errro.value = it.toString()
-                }
+            try {
+                _ListOfCategories.value =    client.getDataList()
+                Logger.i { "${_ListOfCategories.value}" }
+            }
+            catch (_:Exception){
+
+            }
         }
-
     }
-    fun test() {
-        viewModelScope.launch {
-            _errro.value = "loading"
-            client.test()
-                .onSuccess {
-                    _errro.value = it.toString()
-                }
-                .onError {
-                    _errro.value = it.toString()
-                }
-        }
-
-    }
-
 
 }

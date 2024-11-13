@@ -71,10 +71,12 @@ kotlin {
             implementation("io.ktor:ktor-client-serialization:3.0.0")
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0")
 
-
+            implementation("co.touchlab:kermit:2.0.4")
         }
         wasmJsMain.dependencies {
             implementation("io.ktor:ktor-client-js:3.0.0")
+
+
 
         }
     }

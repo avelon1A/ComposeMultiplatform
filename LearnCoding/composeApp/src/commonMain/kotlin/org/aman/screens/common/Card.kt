@@ -1,5 +1,6 @@
 package org.aman.screens.common
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,12 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DsaCategoryCard(title: String, problemsSolved: Int, totalProblems: Int, status: String) {
+fun DsaCategoryCard(title: String, problemsSolved: Int, totalProblems: Int, status: String,onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
-            .aspectRatio(1f),
+            .aspectRatio(1f)
+            .clickable { onClick() },
         elevation = 4.dp
     ) {
         Column(
@@ -34,6 +36,26 @@ fun DsaCategoryCard(title: String, problemsSolved: Int, totalProblems: Int, stat
             Text(text = "$problemsSolved / $totalProblems Problems Solved")
             Spacer(modifier = Modifier.height(4.dp))
             Text(text = if (status.isNotEmpty()) status else "Not Started Yet")
+        }
+    }
+}
+@Composable
+fun ListCategoryCard(title: String,onClick: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth()
+            .aspectRatio(1f)
+            .clickable { onClick() },
+        elevation = 4.dp
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = title, style = MaterialTheme.typography.h6)
+
         }
     }
 }

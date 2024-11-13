@@ -1,13 +1,9 @@
 package org.aman.coding.uitl
 
+import android.util.Log
+
 // Logger.kt
 // Logger.android.kt
-actual object Logger {
-    actual fun d(tag: String, message: String) {
-        android.util.Log.d(tag, message)
-    }
-
-    actual fun e(tag: String, message: String, throwable: Throwable?) {
-        android.util.Log.e(tag, message, throwable)
-    }
+actual fun logMessage(message: String) {
+    Log.d("MyApp", message)
 }

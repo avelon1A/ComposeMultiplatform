@@ -14,5 +14,6 @@ fun main() {
         App(client = remember{
             ApiClient(createHttpClient(JsClient().create()))
         })
+
     }
 }

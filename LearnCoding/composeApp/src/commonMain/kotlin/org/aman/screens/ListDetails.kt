@@ -12,14 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.aman.screens.common.DsaScreenAndroid
-import org.aman.screens.viewmodels.MainScrenViewModel
+import org.aman.screens.common.ListScreenAndroid
+import org.aman.screens.viewmodels.ListDetailsViewModel
 
 
 @Composable
-fun MainScreen(viewModel: MainScrenViewModel, onCategoryClick: (Any?) -> Unit) {
+fun  ListDetailsScreen(viewModel: ListDetailsViewModel,category: String,onListClick: () -> Unit) {
 
-    val uiState = viewModel.listOfCategories.collectAsState()
+    val uiState = viewModel.listOfProblems.collectAsState()
 
     BoxWithConstraints(
         modifier = Modifier
@@ -29,17 +29,16 @@ fun MainScreen(viewModel: MainScrenViewModel, onCategoryClick: (Any?) -> Unit) {
     ) {
         val screenWidth = maxWidth
         Column {
-            Button(onClick = {viewModel.getDataList()}){
+            Button(onClick = {viewModel.getProblemsByCategory(category)}){
                 Text("Load Categories")
             }
 
             if (screenWidth > 600.dp) {
-                DsaScreenAndroid(categories = uiState.value.data, column = 5,onCategoryClick=  { onCategoryClick("array")})
+                ListScreenAndroid( problem = uiState.value, column = 5,onListClick=  { onListClick() })
             } else {
-                DsaScreenAndroid(categories = uiState.value.data, column = 2,onCategoryClick = { onCategoryClick("array")})
+                ListScreenAndroid(problem = uiState.value, column = 2,onListClick = { onListClick() })
             }
         }
 
     }
 }
-
