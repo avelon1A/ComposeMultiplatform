@@ -1,4 +1,4 @@
-package org.aman.coding.data
+package org.aman.coding.domain.model.respnonse
 
 import kotlinx.serialization.Serializable
 

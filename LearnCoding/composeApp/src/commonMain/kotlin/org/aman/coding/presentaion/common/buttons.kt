@@ -1,4 +1,4 @@
-package org.aman.screens.common
+package org.aman.coding.presentaion.common
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height

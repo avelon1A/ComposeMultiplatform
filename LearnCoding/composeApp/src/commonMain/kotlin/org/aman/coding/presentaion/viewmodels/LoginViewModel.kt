@@ -1,4 +1,4 @@
-package org.aman.screens.viewmodels
+package org.aman.coding.presentaion.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.aman.coding.network.ApiClient
+import org.aman.coding.data.remote.ApiClient
 import org.aman.coding.uitl.NetworkError
 import org.aman.coding.uitl.onError
 import org.aman.coding.uitl.onSuccess
