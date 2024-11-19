@@ -28,16 +28,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
-import org.aman.screens.common.InputField
-import org.aman.screens.common.PasswordInputField
-import org.aman.screens.common.SocialSignUpButton
+import org.aman.coding.presentaion.common.InputField
+import org.aman.coding.presentaion.common.PasswordInputField
+import org.aman.coding.presentaion.common.SocialSignUpButton
 
 @Composable
 fun SignUpScreen(
     onSignUpClick: (name: String, email: String, password: String) -> Unit,
     onGoogleSignUpClick: () -> Unit,
-    onLoginClick: () -> Unit
+    navController: NavHostController
 ) {
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -80,7 +81,7 @@ fun SignUpScreen(
                     onPasswordVisibilityChange = { passwordVisible = !passwordVisible },
                     onSignUpClick = { onSignUpClick(name,email,password) },
                     onGoogleSignUpClick = onGoogleSignUpClick,
-                    onLoginClick = onLoginClick
+                    onLoginClick =    { navController.navigate("Login") }
                 )
             }
         }

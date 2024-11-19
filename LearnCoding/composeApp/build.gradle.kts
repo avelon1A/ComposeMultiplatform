@@ -57,6 +57,8 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeVM)
             implementation("io.coil-kt.coil3:coil-compose:3.0.0")
             implementation("io.coil-kt.coil3:coil-compose-core:3.0.0")
             implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.0")
@@ -72,6 +74,8 @@ kotlin {
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0")
 
             implementation("co.touchlab:kermit:2.0.4")
+
+
         }
         wasmJsMain.dependencies {
             implementation("io.ktor:ktor-client-js:3.0.0")

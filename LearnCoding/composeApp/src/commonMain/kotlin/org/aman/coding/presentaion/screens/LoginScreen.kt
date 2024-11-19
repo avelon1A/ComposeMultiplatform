@@ -1,4 +1,4 @@
-package org.aman.screens
+package org.aman.coding.presentaion.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -34,24 +34,32 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import co.touchlab.kermit.Logger
 import coil3.compose.AsyncImage
 import learncoding.composeapp.generated.resources.Res
 import learncoding.composeapp.generated.resources.compose_multiplatform
 import org.aman.coding.uitl.Const.APP_ICON
 import org.aman.coding.uitl.Const.GOOGLE_BUTTON
-import org.aman.screens.common.InputField
-import org.aman.screens.common.PasswordInputField
-import org.aman.screens.viewmodels.UIState
-import org.aman.screens.viewmodels.LoginViewModel
+import org.aman.coding.presentaion.common.InputField
+import org.aman.coding.presentaion.common.PasswordInputField
+import org.aman.coding.presentaion.viewmodels.UIState
+import org.aman.coding.presentaion.viewmodels.LoginViewModel
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 fun LoginScreen(
     onLoginClick: (email: String, password: String) -> Unit,
     onGoogleLoginClick: () -> Unit,
     onSignUpClick:()-> Unit,
-    loginViewModel: LoginViewModel = viewModel()
+      navController: NavController,
+    loginViewModel: LoginViewModel = koinViewModel()
 ) {
+    Logger.d("LoginScreen")
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -63,7 +71,11 @@ fun LoginScreen(
 
         }
         is UIState.Success -> {
-            onSignUpClick()
+            navController.navigate("MainScreen") {
+                popUpTo("LoginScreen") {
+                    inclusive = true
+                }
+            }
         }
         is UIState.Error -> {
 
@@ -117,7 +129,8 @@ fun LoginScreen(
                         onPasswordVisibilityChange = { passwordVisible = !passwordVisible },
                         onLoginClick = { loginViewModel.login(email,password) },
                         onGoogleLoginClick = { loginViewModel.login(email,password) },
-                        onSignUpClick = onSignUpClick
+                        onSignUpClick = {},
+                        navController = navController
                     )
                 }
             }
@@ -148,7 +161,8 @@ fun LoginScreen(
                     onPasswordVisibilityChange = { passwordVisible = !passwordVisible },
                     onLoginClick = { loginViewModel.login(email,password) },
                     onGoogleLoginClick = { loginViewModel.login(email,password) },
-                    onSignUpClick = onSignUpClick
+                    onSignUpClick = {  },
+                    navController= navController
                 )
             }
         }
@@ -166,7 +180,8 @@ fun LoginForm(
     onPasswordVisibilityChange: () -> Unit,
     onLoginClick: () -> Unit,
     onGoogleLoginClick: () -> Unit,
-    onSignUpClick: () -> Unit
+    onSignUpClick: () -> Unit,
+    navController: NavController
 ) {
     // Email Field
     InputField(
@@ -226,7 +241,13 @@ fun LoginForm(
 
     // Sign Up Button
     Button(
-        onClick = onSignUpClick,
+        onClick = {
+            navController.navigate("MainScreen") {
+                popUpTo("LoginScreen") {
+                    inclusive = true
+                }
+            }
+        },
         modifier = Modifier
             .fillMaxWidth()
             .height(50.dp),

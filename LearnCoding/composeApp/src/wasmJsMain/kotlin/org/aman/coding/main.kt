@@ -5,8 +5,8 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 import io.ktor.client.engine.js.JsClient
 import kotlinx.browser.document
-import org.aman.coding.network.ApiClient
-import org.aman.coding.network.createHttpClient
+import org.aman.coding.data.remote.ApiClient
+import org.aman.coding.data.remote.createHttpClient
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
