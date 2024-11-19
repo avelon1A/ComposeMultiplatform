@@ -18,7 +18,7 @@ import org.aman.coding.presentaion.viewmodels.CodingViewModel
 
 @Composable
 fun CodingTab(onCompile: () -> Unit, onSubmit: () -> Unit,viewmodle: CodingViewModel) {
-    var code by remember { mutableStateOf("") }
+    var code  = viewmodle.code
     val scrollState = rememberScrollState()
 
     Box(){
