@@ -5,6 +5,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 import io.ktor.client.engine.js.JsClient
 import kotlinx.browser.document
+import kotlinx.browser.window
 import org.aman.coding.data.remote.ApiClient
 import org.aman.coding.data.remote.createHttpClient
 

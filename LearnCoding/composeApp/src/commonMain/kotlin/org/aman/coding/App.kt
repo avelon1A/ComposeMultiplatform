@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import org.aman.coding.data.remote.ApiClient
 import org.aman.coding.di.appModule
-import org.aman.coding.presentaion.navigation.NavigationHost
+import org.aman.coding.presentation.navigation.NavigationHost
 import org.koin.compose.KoinApplication
 
 @Composable
@@ -20,3 +20,5 @@ fun App(client: ApiClient) {
     }
 
 }
+
+

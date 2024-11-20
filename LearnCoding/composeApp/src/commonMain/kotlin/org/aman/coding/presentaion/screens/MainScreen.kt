@@ -24,11 +24,9 @@ import org.koin.core.annotation.KoinExperimentalAPI
 fun MainScreen(viewModel: MainScrenViewModel = koinViewModel(), onCategoryClick: (Any?) -> Unit) {
     Logger.d("MainScreen")
     LaunchedEffect(Unit) {
-        // This will only be called once when the composable is first composed
         Logger.d("MainScreen first composition")
     }
     val uiState = remember { viewModel.listOfCategories }.collectAsState()
-
 
     when(val state = uiState.value){
         else -> {

@@ -20,6 +20,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
+    jvm("desktop")
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
@@ -31,7 +32,6 @@ kotlin {
                 outputFileName = "composeApp.js"
                 devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
                     static = (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
                         add(rootDirPath)
                         add(projectDirPath)
                     }
@@ -42,7 +42,7 @@ kotlin {
     }
 
     sourceSets {
-
+        val desktopMain by getting
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -65,24 +65,26 @@ kotlin {
             implementation("io.coil-kt.coil3:coil:3.0.0")
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
-
             implementation("io.ktor:ktor-client-core:3.0.0")
             implementation("io.ktor:ktor-client-content-negotiation:3.0.0")
             implementation("io.ktor:ktor-client-json:3.0.0")
             implementation("io.ktor:ktor-client-logging:3.0.0")
             implementation("io.ktor:ktor-client-serialization:3.0.0")
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0")
-
             implementation("co.touchlab:kermit:2.0.4")
-
 
         }
         wasmJsMain.dependencies {
             implementation("io.ktor:ktor-client-js:3.0.0")
-
-
-
         }
+
+        desktopMain.dependencies {
+            implementation("io.ktor:ktor-client-apache:3.0.0")
+            implementation("io.ktor:ktor-client-cio:3.0.0")
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutines.swing)
+        }
+
     }
 }
 
@@ -118,3 +120,14 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
+compose.desktop {
+    application {
+        mainClass = "org.aman.coding.MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "org.aman.coding"
+            packageVersion = "1.0.0"
+        }
+    }
+}

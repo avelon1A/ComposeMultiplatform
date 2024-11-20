@@ -110,13 +110,11 @@ fun LoginScreen(
                         .fillMaxHeight(),
                     contentScale = ContentScale.FillHeight
                 )
-
-                // Login form on the right
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
-                        .padding(start = 32.dp),
+                        .padding(40.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
@@ -135,7 +133,6 @@ fun LoginScreen(
                 }
             }
         } else {
-            // For smaller screens like smartphones
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -143,7 +140,6 @@ fun LoginScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                // Centered layout
                 AsyncImage(
                     model = APP_ICON,
                     contentDescription = "App Logo",
@@ -183,7 +179,6 @@ fun LoginForm(
     onSignUpClick: () -> Unit,
     navController: NavController
 ) {
-    // Email Field
     InputField(
         value = email,
         label = "Email",
@@ -193,7 +188,6 @@ fun LoginForm(
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    // Password Field
     PasswordInputField(
         value = password,
         label = "Password",
@@ -204,7 +198,10 @@ fun LoginForm(
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    // Login Button
+    /*
+     Login Button
+
+     */
     Button(
         onClick = onLoginClick,
         modifier = Modifier
