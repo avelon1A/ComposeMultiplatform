@@ -10,11 +10,9 @@ import org.aman.coding.data.remote.ApiClient
 import org.aman.coding.presentaion.screens.ListDetailsScreen
 import org.aman.coding.presentaion.screens.LoginScreen
 import org.aman.coding.presentaion.screens.MainScreen
-import org.aman.coding.uitl.handleBackNavigation
 
 @Composable
 fun NavigationHost(navController: NavHostController, client: ApiClient) {
-    handleBackNavigation(navController)
 
     NavHost(navController, startDestination = "Login") {
         composable("Login") {
