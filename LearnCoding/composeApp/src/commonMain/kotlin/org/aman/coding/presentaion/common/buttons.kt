@@ -38,7 +38,7 @@ fun InputField(
         onValueChange = onValueChange,
         label = { Text(label) },
         leadingIcon = { Icon(leadingIcon, contentDescription = "$label Icon") },
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.width(300.dp),
         singleLine = true
     )
 }
@@ -71,7 +71,7 @@ fun PasswordInputField(
                 )
             }
         },
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.width(300.dp),
         singleLine = true
     )
 }
@@ -81,8 +81,7 @@ fun SocialSignUpButton(onClick: () -> Unit) {
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.width(300.dp)
             .height(50.dp),
         elevation = ButtonDefaults.elevation(8.dp)
     ) {

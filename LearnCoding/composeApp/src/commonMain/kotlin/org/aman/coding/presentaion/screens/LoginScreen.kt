@@ -62,6 +62,7 @@ fun LoginScreen(
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var width by remember { mutableStateOf(0.dp) }
     var passwordVisible by remember { mutableStateOf(false) }
     val loginState by loginViewModel.loginState.collectAsState()
     val sting: String by loginViewModel.string1.collectAsState()
@@ -96,7 +97,8 @@ fun LoginScreen(
         val screenWidth = maxWidth
 
         if (screenWidth > 600.dp) {
-            // For larger screens
+            width =300.dp
+
             Row(
                 modifier = Modifier.fillMaxSize(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -204,8 +206,7 @@ fun LoginForm(
      */
     Button(
         onClick = onLoginClick,
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.width(300.dp)
             .height(50.dp)
     ) {
         Text(text = "Login", fontSize = 16.sp, fontWeight = FontWeight.Bold)
@@ -217,8 +218,7 @@ fun LoginForm(
     Button(
         onClick = onGoogleLoginClick,
         colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.width(300.dp)
             .height(50.dp),
         elevation = ButtonDefaults.elevation(8.dp)
     ) {
@@ -245,8 +245,7 @@ fun LoginForm(
                 }
             }
         },
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.width(300.dp)
             .height(50.dp),
         colors = ButtonDefaults.buttonColors(backgroundColor = Color.LightGray)
     ) {
