@@ -1,6 +1,6 @@
 # CodingSite
 
-Welcome to **CodingSite**, a multi-platform coding site where users can learn, practice, and improve their coding skills! Our platform is designed to offer a seamless experience across various devices, allowing users to engage with coding challenges, tutorials, and community discussions anytime, anywhere.
+Welcome to **CodingSite**, a multi-platform coding site where users can learn, practice, and improve their coding skills! Our platform is designed to offer a seamless experience across various devices, allowing users to engage with coding challenges, tutorials, and community discussions anytime, anywhere .
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ Welcome to **CodingSite**, a multi-platform coding site where users can learn, p
 
 ## Features
 
-- **Multi-platform Support**: Available on web, iOS, and Android.
+- **Multi-platform Support**: Available on web, iOS, and Android , web ,Desktop.
 - **Interactive Coding Challenges**: Tackle challenges in various programming languages.
 - **Tutorials and Resources**: Access a library of tutorials, documentation, and coding resources.
 - **Community Discussions**: Engage with other users through forums and discussions.
